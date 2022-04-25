@@ -19,11 +19,46 @@
         }
     </script>
     <style>
-        body{
-            margin: 20px;
+         body{
+            background-color: #e5ddee;
+            margin: 0px;
+            font-family: Arial, Helvetica, sans-serif;
         }
+
+        button{
+            background-color: #9178af;
+            border-radius: 10px;
+            border: none;
+            font-weight: bold;
+        }
+
+        input{
+            background-color: #b4a0cd;
+            border-radius: 10px;
+            border: none;
+        }
+
+        header{
+            background-image: url("img/header1.jpg");
+            padding: 20px;
+            font-weight: bold;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover{
+            color: #b4a0cd;
+        }
+
         td{
             padding-right: 20px;
+        }
+
+        div{
+            padding: 20px;
         }
     </style>
 </head>
@@ -33,6 +68,8 @@
     include_once('menu.php');
     ?>
 </header>
+
+<div>
     <form method="post">
         <h3>Procurar contato:</h3><br>
             <input type="text" name="procurar" id="procurar" size="25" placeholder="pesquisar"
@@ -56,6 +93,7 @@
             <td><b>Editar</b></td>
             <td><b>Excluir</b></td>
     </tr> 
+</div>
             
     <?php
         $pdo = Conexao::getInstance(); 
@@ -87,8 +125,9 @@
             <td><?php echo $linha['cont_tipo'];?></td>
             <td><?php echo $linha['cont_descricao'];?></td>
             <td><?php echo $linha['pf_nome'];?></td>
-            <td><a href='cadastroCont.php?acao=editar&cont_id=<?php echo $linha['cont_id'];?>'>Editar</a></td>
-            <td><?php echo "<a href=javascript:excluirRegistro('acaoCont.php?acao=excluir&cont_id={$linha['cont_id']}')>Excluir</a><br>"; ?></td>
+            <td><a href='cadastroCont.php?acao=editar&cont_id=<?php echo $linha['cont_id'];?>'><img src='img/edit.svg'></a></td>
+            <td><?php echo "<a href=javascript:excluirRegistro('acaoCont.php?acao=excluir&cont_id={$linha['cont_id']}')>
+            <img src='img/excluir.svg'></a><br>"; ?></td>
         
         </tr>
     <?php } ?>       

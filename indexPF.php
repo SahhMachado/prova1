@@ -17,11 +17,46 @@
         }
     </script>
     <style>
-        body{
-            margin: 20px;
+         body{
+            background-color: #e5ddee;
+            margin: 0px;
+            font-family: Arial, Helvetica, sans-serif;
         }
+
+        button{
+            background-color: #9178af;
+            border-radius: 10px;
+            border: none;
+            font-weight: bold;
+        }
+
+        input{
+            background-color: #b4a0cd;
+            border-radius: 10px;
+            border: none;
+        }
+
+        header{
+            background-image: url("img/header1.jpg");
+            padding: 20px;
+            font-weight: bold;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover{
+            color: #b4a0cd;
+        }
+
         td{
             padding-right: 20px;
+        }
+
+        div{
+            padding: 20px;
         }
     </style>
 </head>
@@ -32,6 +67,7 @@
     ?>
 </header>
 
+<div>
     <form method="post">
         <h3>Procurar Conta Corrente:</h3><br>
         <input type="text" name="procurar" id="procurar" size="25" placeholder="pesquisar"
@@ -55,6 +91,7 @@
                 <td><b>Editar</b></td>
                 <td><b>Excluir</b></td>
     </tr> 
+</div>
 
             
     <?php
@@ -79,8 +116,9 @@
             <td><?php echo $linha['pf_nome'];?></td>
             <td><?php echo date("d/m/Y",strtotime($linha['pf_dt_nascimento']));?></td>
 
-            <td><a href='cadastroPF.php?acao=editar&pf_id=<?php echo $linha['pf_id'];?>'>Editar</a></td>
-            <td><?php echo " <a href=javascript:excluirRegistro('acaoPF.php?acao=excluirpf_id={$linha['pf_id']}')>Excluir</a><br>"; ?></td>
+            <td><a href='cadastroPF.php?acao=editar&pf_id=<?php echo $linha['pf_id'];?>'><img src='img/edit.svg'></a></td>
+            <td><?php echo " <a href=javascript:excluirRegistro('acaoPF.php?acao=excluir&pf_id={$linha['pf_id']}')>
+            <img src='img/excluir.svg'></a><br>"; ?></td>
         
         </tr>
     <?php } ?>       

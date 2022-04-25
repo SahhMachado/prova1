@@ -18,6 +18,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo $title ?></title>
+    <style>
+        body{
+            background-color: #e5ddee;
+            margin: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button{
+            background-color: #9178af;
+            border-radius: 10px;
+            border: none;
+            font-weight: bold;
+        }
+
+        input{
+            background-color: #b4a0cd;
+            border-radius: 10px;
+            border: none;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover{
+            color: #b4a0cd;
+        }
+    </style>
 </head>
 
 <body>
