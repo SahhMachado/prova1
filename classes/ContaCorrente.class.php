@@ -5,8 +5,6 @@
             private $cc_saldo;
             private $cc_pf_id;
             private $cc_dt_ultima_alteracao;
-            public $saque;
-            public $deposito;
 
 
             public function __construct($numero,$saldo,$pf_id,$data){
@@ -63,7 +61,33 @@
                 return $stmt->execute();
             }
 
-            public function buscar($numero){
+            public function saque($valor){
+                $pdo = Conexao::getInstance();
+                $cc_saldo = ($this->setSaldo($this->cc_saldo)) - ($valor);
+
+                $stmt = $pdo->prepare("UPDATE conta_corrent SET cc_saldo = $cc_saldo, cc_pf_id = :cc_pf_id, 
+                cc_dt_ultima_alteracao = :cc_dt_ultima_alteracao 
+                WHERE (cc_numero = :cc_numero);");
+                $stmt->bindValue(':cc_numero', $this->setNumero($this->cc_numero));
+                $stmt->bindValue(':cc_pf_id', $this->setPf($this->cc_pf_id));
+                $stmt->bindValue(':cc_dt_ultima_alteracao', date("Y-m-d"));
+                return $stmt->execute();
+            }
+
+            public function deposito($valor){
+                $pdo = Conexao::getInstance();
+                $cc_saldo = ($this->setSaldo($this->cc_saldo)) + ($valor);
+                
+                $stmt = $pdo->prepare("UPDATE conta_corrent SET cc_saldo = $cc_saldo, cc_pf_id = :cc_pf_id, 
+                cc_dt_ultima_alteracao = :cc_dt_ultima_alteracao 
+                WHERE (cc_numero = :cc_numero);");
+                $stmt->bindValue(':cc_numero', $this->setNumero($this->cc_numero));
+                $stmt->bindValue(':cc_pf_id', $this->setPf($this->cc_pf_id));
+                $stmt->bindValue(':cc_dt_ultima_alteracao', date("Y-m-d"));
+                return $stmt->execute();
+            }
+
+            public function buscar($id){
                 require_once("conf/Conexao.php");
     
                 $conexao = Conexao::getInstance();
@@ -79,7 +103,9 @@
             
                     return false;
             }
+    
         }
+
     ?>
     </div>
 </body>
